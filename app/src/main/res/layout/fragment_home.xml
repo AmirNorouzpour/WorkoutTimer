@@ -1,384 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/_5sdp"
-    android:layout_marginRight="@dimen/_5sdp"
-    tools:context=".ui.home.HomeFragment">
+    android:fillViewport="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="100">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
-            android:orientation="horizontal">
-
-            <androidx.gridlayout.widget.GridLayout
-                android:id="@+id/box_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:columnCount="2"
-                app:rowCount="1">
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/background_rounded"
-                    android:orientation="vertical"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_20sdp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="55"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_40sdp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Mins of Month"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_12sdp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/background_rounded"
-                    android:orientation="vertical"
-                    app:layout_columnWeight="1"
-                    app:layout_rowWeight="1">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_20sdp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="48"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_40sdp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Total Times of Month"
-                        android:textAlignment="center"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/_12sdp" />
-
-                </LinearLayout>
-
-            </androidx.gridlayout.widget.GridLayout>
-
-
-        </LinearLayout>
+        android:fitsSystemWindows="true"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        tools:context=".ui.home.HomeFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            android:background="@drawable/background_rounded"
-            android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/_5sdp"
-            tools:ignore="MissingConstraints">
+            android:weightSum="100">
 
-            <!-- Sets Timer Section -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/background_rounded"
-                android:padding="@dimen/_5sdp">
+                android:layout_height="@dimen/_150sdp"
+                android:orientation="horizontal">
 
-                <!-- Sets Title -->
-                <TextView
-                    android:id="@+id/title_sets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SETS"
-                    android:textColor="#CCCCCC"
-                    android:textSize="@dimen/_16sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/box_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:columnCount="2"
+                    app:rowCount="1">
 
-                <!-- Decrement Button (-) -->
-                <Button
-                    android:id="@+id/button_sets_decrement"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="–"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_24sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_sets" />
 
-                <!-- Sets Timer -->
-                <TextView
-                    android:id="@+id/textview_sets_timer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/button_sets_increment"
-                    app:layout_constraintStart_toEndOf="@id/button_sets_decrement"
-                    app:layout_constraintTop_toBottomOf="@id/title_sets" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/background_rounded"
+                        android:orientation="vertical"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
 
-                <!-- Increment Button (+) -->
-                <Button
-                    android:id="@+id/button_sets_increment"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="+"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_24sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_sets" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Work Timer Section -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/background_rounded"
-                android:padding="@dimen/_5sdp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="55"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_40sdp" />
 
-                <!-- Work Title -->
-                <TextView
-                    android:id="@+id/title_work"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="WORK"
-                    android:textColor="#00FF00"
-                    android:textSize="@dimen/_16sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Mins of Month"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_12sdp" />
 
-                <!-- Decrement Button (-) -->
-                <Button
-                    android:id="@+id/button_work_decrement"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="–"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_work" />
+                    </LinearLayout>
 
-                <!-- Work Timer -->
-                <TextView
-                    android:id="@+id/textview_work_timer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="00:30"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/button_work_increment"
-                    app:layout_constraintStart_toEndOf="@id/button_work_decrement"
-                    app:layout_constraintTop_toBottomOf="@id/title_work" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/background_rounded"
+                        android:orientation="vertical"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
 
-                <!-- Increment Button (+) -->
-                <Button
-                    android:id="@+id/button_work_increment"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="+"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_work" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="48"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_40sdp" />
 
-            <!-- Rest Timer Section -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/background_rounded"
-                android:padding="@dimen/_5sdp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Times of Month"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_12sdp" />
 
-                <!-- Rest Title -->
-                <TextView
-                    android:id="@+id/title_rest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="REST"
-                    android:textColor="#007BFF"
-                    android:textSize="@dimen/_16sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
 
-                <!-- Decrement Button (-) -->
-                <Button
-                    android:id="@+id/button_rest_decrement"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="–"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_rest" />
+                </androidx.gridlayout.widget.GridLayout>
 
-                <!-- Rest Timer -->
-                <TextView
-                    android:id="@+id/textview_rest_timer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="00:20"
-                    android:textColor="#CCCCCC"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/button_rest_increment"
-                    app:layout_constraintStart_toEndOf="@id/button_rest_decrement"
-                    app:layout_constraintTop_toBottomOf="@id/title_rest" />
 
-                <!-- Increment Button (+) -->
-                <Button
-                    android:id="@+id/button_rest_increment"
-                    android:layout_width="@dimen/_48sdp"
-                    android:layout_height="@dimen/_48sdp"
-                    android:background="@android:color/transparent"
-                    android:text="+"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_26sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_rest" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <!-- Skip Last Rest Switch -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/background_rounded"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_5sdp">
-
-                <TextView
-                    android:id="@+id/skip_last_rest_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingLeft="@dimen/_20sdp"
-                    android:text="Skip last rest"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_16sdp" />
-
-                <Switch
-                    android:id="@+id/switch_skip_last_rest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:textColor="#FFFFFF"
-                    android:textSize="@dimen/_16sdp" />
-            </LinearLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/background_rounded_white"
-                android:clickable="true"
-                android:elevation="@dimen/_4sdp"
-                android:padding="@dimen/_16sdp"
+                android:orientation="vertical"
                 tools:ignore="MissingConstraints">
 
-                <!-- Play Icon -->
-                <ImageView
-                    android:id="@+id/play_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_play_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#000000" />
+                <!-- Sets Timer Section -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_rounded"
+                    >
+                    <!-- Sets Title -->
+                    <TextView
+                        android:id="@+id/title_sets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SET"
+                        android:textColor="#CCCCCC"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- Start Workout Text -->
-                <TextView
-                    android:id="@+id/start_workout_text"
-                    android:layout_width="0dp"
+                    <!-- Decrement Button (-) -->
+                    <Button
+                        android:id="@+id/button_sets_decrement"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="–"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_30sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_sets" />
+
+                    <!-- Sets Timer -->
+                    <TextView
+                        android:id="@+id/textview_sets_timer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/button_sets_increment"
+                        app:layout_constraintStart_toEndOf="@id/button_sets_decrement"
+                        app:layout_constraintTop_toBottomOf="@id/title_sets" />
+
+                    <!-- Increment Button (+) -->
+                    <Button
+                        android:id="@+id/button_sets_increment"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="+"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_sets" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Work Timer Section -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Start workout"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/timer_text"
-                    app:layout_constraintStart_toEndOf="@id/play_icon"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="@drawable/background_rounded"
+                   >
 
-                <!-- Timer -->
-                <TextView
-                    android:id="@+id/timer_text"
-                    android:layout_width="wrap_content"
+                    <!-- Work Title -->
+                    <TextView
+                        android:id="@+id/title_work"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WORK"
+                        android:textColor="#00FF00"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Decrement Button (-) -->
+                    <Button
+                        android:id="@+id/button_work_decrement"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="–"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_work" />
+
+                    <!-- Work Timer -->
+                    <TextView
+                        android:id="@+id/textview_work_timer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="00:30"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/button_work_increment"
+                        app:layout_constraintStart_toEndOf="@id/button_work_decrement"
+                        app:layout_constraintTop_toBottomOf="@id/title_work" />
+
+                    <!-- Increment Button (+) -->
+                    <Button
+                        android:id="@+id/button_work_increment"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="+"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_work" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Rest Timer Section -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="00:30"
-                    android:textColor="#666666"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:background="@drawable/background_rounded"
+                   >
 
+                    <!-- Rest Title -->
+                    <TextView
+                        android:id="@+id/title_rest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REST"
+                        android:textColor="#007BFF"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Decrement Button (-) -->
+                    <Button
+                        android:id="@+id/button_rest_decrement"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="–"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_rest" />
+
+                    <!-- Rest Timer -->
+                    <TextView
+                        android:id="@+id/textview_rest_timer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="00:20"
+                        android:textColor="#CCCCCC"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/button_rest_increment"
+                        app:layout_constraintStart_toEndOf="@id/button_rest_decrement"
+                        app:layout_constraintTop_toBottomOf="@id/title_rest" />
+
+                    <!-- Increment Button (+) -->
+                    <Button
+                        android:id="@+id/button_rest_increment"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/transparent"
+                        android:text="+"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_26sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_rest" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Skip Last Rest Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <TextView
+                        android:id="@+id/skip_last_rest_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="@dimen/_20sdp"
+                        android:text="Skip last rest"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <Switch
+                        android:id="@+id/switch_skip_last_rest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:checked="true"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/_16sdp" />
+                </LinearLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/background_rounded_white"
+                    android:clickable="true"
+                    android:elevation="@dimen/_4sdp"
+                    android:padding="@dimen/_16sdp"
+                    tools:ignore="MissingConstraints">
+
+                    <!-- Play Icon -->
+                    <ImageView
+                        android:id="@+id/play_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_play_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#000000" />
+
+                    <!-- Start Workout Text -->
+                    <TextView
+                        android:id="@+id/start_workout_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Start workout"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/timer_text"
+                        app:layout_constraintStart_toEndOf="@id/play_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Timer -->
+                    <TextView
+                        android:id="@+id/timer_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:30"
+                        android:textColor="#666666"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
