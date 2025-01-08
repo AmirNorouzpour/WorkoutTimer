@@ -1,7 +1,5 @@
 package com.example.workouttimer;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
@@ -76,7 +74,7 @@ public class TimerActivity extends AppCompatActivity {
         closeBtn = findViewById(R.id.close_button);
 
         closeBtn.setOnClickListener(v -> {
-            finish();
+            this.finish();
         });
 
         psv = ps ? psv : 0; // زمان آماده‌سازی
@@ -108,6 +106,7 @@ public class TimerActivity extends AppCompatActivity {
                         executeSet(sets - 1, workTime, restTime, skipLastRest); // اجرای ست بعدی
                     });
                 } else {
+                    SaveTimes(UsedSecs - psv);
                     this.finish();
                 }
             });
@@ -204,7 +203,6 @@ public class TimerActivity extends AppCompatActivity {
         totalTimerText.setText(formattedTime);
     }
 
-
     private void startTotalTimer() {
         totalTimerRunnable = new Runnable() {
             @Override
@@ -218,7 +216,7 @@ public class TimerActivity extends AppCompatActivity {
                 } else {
                     // وقتی تایمر کل به پایان رسید
                     totalTimerHandler.removeCallbacks(totalTimerRunnable);
-                    SaveTimes(UsedSecs - psv);
+
                 }
             }
         };

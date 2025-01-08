@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     int workTime = 30;
     int restTime = 15;
     boolean skipLastRest = true;
-    TextView timer_text;
+    TextView timer_text, tvMin, tvTime;
     boolean ss, vs, ps;
     int psv, times, secs;
 
@@ -40,8 +40,8 @@ public class HomeFragment extends Fragment {
         Button buttonIncrement = root.findViewById(R.id.button_sets_increment);
         Button buttonDecrement = root.findViewById(R.id.button_sets_decrement);
         TextView textViewValue = root.findViewById(R.id.textview_sets_timer);
-        TextView tvMin = root.findViewById(R.id.tvMins);
-        TextView tvTime = root.findViewById(R.id.tvTimes);
+        tvMin = root.findViewById(R.id.tvMins);
+        tvTime = root.findViewById(R.id.tvTimes);
         timer_text = root.findViewById(R.id.timer_text);
         ConstraintLayout start_workout = root.findViewById(R.id.start);
 
@@ -181,6 +181,17 @@ public class HomeFragment extends Fragment {
         timer_text.setText(formatTime(total));
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        RefreshData();
+    }
+
+    public void RefreshData() {
+        LoadData();
+        tvMin.setText((secs / 60) + "");
+        tvTime.setText(times + "");
+    }
 
     @Override
     public void onDestroyView() {
