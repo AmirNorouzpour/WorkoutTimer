@@ -89,14 +89,14 @@ public class TimerActivity extends AppCompatActivity {
         // نمایش Work
         if (isFirst)
             updateProgressText(currentSetNumber, "Prepare", -1);
-        executeProgress(isFirst ? 5 : 0, "#FFEB3B", () -> {
+        executeProgress(isFirst ? 5 : 0, "#696969", () -> {
 
             updateProgressText(currentSetNumber, "Work", totalSets);
-            executeProgress(isFirst ? workTime - 1 : workTime, "#ff0054", () -> { // اجرای Work
+            executeProgress(isFirst ? workTime - 1 : workTime, "#008080", () -> { // اجرای Work
                 if (sets > 1 || !skipLastRest) { // نمایش Rest
                     isFirst = false;
                     updateProgressText(currentSetNumber, "Rest", skipLastRest ? totalSets - 1 : totalSets);
-                    executeProgress(restTime, "#4361ee", () -> {
+                    executeProgress(restTime, "#1E90FF", () -> {
                         executeSet(sets - 1, workTime, restTime, skipLastRest); // اجرای ست بعدی
                     });
                 } else {
