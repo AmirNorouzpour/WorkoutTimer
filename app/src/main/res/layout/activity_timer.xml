@@ -1,0 +1,82 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333">
+
+    <!-- View برای انیمیشن Progress -->
+    <View
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:background="#FF5722" />
+
+    <!-- تایمر کلی و دکمه بستن -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp"
+        android:layout_alignParentTop="true">
+
+        <!-- تایمر کلی -->
+        <TextView
+            android:id="@+id/total_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:gravity="center"
+            android:textSize="@dimen/_25sdp"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true" />
+
+        <!-- دکمه بستن -->
+        <ImageButton
+            android:id="@+id/close_button"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentStart="true"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="Close"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:scaleType="center"
+            app:tint="#FFFFFF" />
+    </RelativeLayout>
+
+    <!-- تایمر فاز -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/progress_text_phase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Work 1/3"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_30sdp"
+            android:padding="@dimen/_16sdp"
+            android:gravity="center"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/progress_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="00:30"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_80sdp"
+            android:padding="@dimen/_10sdp"
+            android:gravity="center"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</FrameLayout>
