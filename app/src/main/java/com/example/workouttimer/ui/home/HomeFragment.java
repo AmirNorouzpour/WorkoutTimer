@@ -30,17 +30,18 @@ public class HomeFragment extends Fragment {
     int restTime = 15;
     boolean skipLastRest = true;
     TextView timer_text;
+    boolean ss, vs, ps;
+    int psv, times, secs;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
 
         Button buttonIncrement = root.findViewById(R.id.button_sets_increment);
         Button buttonDecrement = root.findViewById(R.id.button_sets_decrement);
         TextView textViewValue = root.findViewById(R.id.textview_sets_timer);
+        TextView tvMin = root.findViewById(R.id.tvMins);
+        TextView tvTime = root.findViewById(R.id.tvTimes);
         timer_text = root.findViewById(R.id.timer_text);
         ConstraintLayout start_workout = root.findViewById(R.id.start);
 
@@ -50,6 +51,10 @@ public class HomeFragment extends Fragment {
             myIntent.putExtra("work", workTime);
             myIntent.putExtra("rest", restTime);
             myIntent.putExtra("skip", skipLastRest);
+            myIntent.putExtra("ss", ss);
+            myIntent.putExtra("vs", vs);
+            myIntent.putExtra("ps", ps);
+            myIntent.putExtra("psv", psv);
             startActivity(myIntent);
 
             SaveData();
@@ -115,6 +120,7 @@ public class HomeFragment extends Fragment {
         });
 
         // Skip Last Rest Switch
+        @SuppressLint("UseSwitchCompatOrMaterialCode")
         Switch skipLastRest = root.findViewById(R.id.switch_skip_last_rest);
         skipLastRest.setOnCheckedChangeListener((buttonView, isChecked) -> {
             this.skipLastRest = isChecked;
@@ -124,7 +130,10 @@ public class HomeFragment extends Fragment {
         textViewValue.setText(String.valueOf(sets));
         workTimer.setText(formatTime(workTime));
         restTimer.setText(formatTime(restTime));
+        skipLastRest.setChecked(this.skipLastRest);
         SetTotal();
+        tvMin.setText((secs / 60) + "");
+        tvTime.setText(times + "");
         return root;
     }
 
@@ -147,6 +156,13 @@ public class HomeFragment extends Fragment {
         restTime = sharedPreferences.getInt("rest", 20);
         skipLastRest = sharedPreferences.getBoolean("skip", true);
 
+        ss = sharedPreferences.getBoolean("ss", true);
+        vs = sharedPreferences.getBoolean("vs", false);
+        ps = sharedPreferences.getBoolean("ps", true);
+        psv = sharedPreferences.getInt("psv", 5);
+
+        times = sharedPreferences.getInt("times", 0);
+        secs = sharedPreferences.getInt("secs", 0);
     }
 
     @SuppressLint("DefaultLocale")

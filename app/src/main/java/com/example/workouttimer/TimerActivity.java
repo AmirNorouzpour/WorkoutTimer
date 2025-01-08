@@ -1,9 +1,12 @@
 package com.example.workouttimer;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -32,7 +35,8 @@ public class TimerActivity extends AppCompatActivity {
     private int sound1, sound2, sound3, sound4, sound5; // شناسه‌های صداها
     private int lastTimeRead = 1000; // برای جلوگیری از پخش چندباره
     boolean isFirst = true;
-
+    private boolean ss, vs, ps;
+    private int psv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +47,27 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        soundPool = new SoundPool.Builder()
-                .setMaxStreams(5)
-                .build();
+        // دریافت داده‌های Intent
+        totalSets = getIntent().getIntExtra("sets", 2); // تعداد کل ست‌ها
+        int work = getIntent().getIntExtra("work", 30); // مدت زمان work
+        int rest = getIntent().getIntExtra("rest", 15); // مدت زمان rest
+        boolean skip = getIntent().getBooleanExtra("skip", true); // آیا استراحت آخر باید رد شود
+        ss = getIntent().getBooleanExtra("ss", true);
+        vs = getIntent().getBooleanExtra("vs", false);
+        ps = getIntent().getBooleanExtra("ps", true);
+        psv = getIntent().getIntExtra("psv", 5);
 
-        sound1 = soundPool.load(this, R.raw.number_1, 1);
-        sound2 = soundPool.load(this, R.raw.number_2, 1);
-        sound3 = soundPool.load(this, R.raw.number_3, 1);
-        sound4 = soundPool.load(this, R.raw.number_4, 1);
-        sound5 = soundPool.load(this, R.raw.number_5, 1);
+        if (ss) {
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(5)
+                    .build();
 
+            sound1 = soundPool.load(this, R.raw.number_1, 1);
+            sound2 = soundPool.load(this, R.raw.number_2, 1);
+            sound3 = soundPool.load(this, R.raw.number_3, 1);
+            sound4 = soundPool.load(this, R.raw.number_4, 1);
+            sound5 = soundPool.load(this, R.raw.number_5, 1);
+        }
 
         // دسترسی به TextView
         progressTextPhase = findViewById(R.id.progress_text_phase);
@@ -64,15 +79,8 @@ public class TimerActivity extends AppCompatActivity {
             finish();
         });
 
-        // دریافت داده‌های Intent
-        totalSets = getIntent().getIntExtra("sets", 2); // تعداد کل ست‌ها
-        int work = getIntent().getIntExtra("work", 30); // مدت زمان work
-        int rest = getIntent().getIntExtra("rest", 15); // مدت زمان rest
-        boolean skip = getIntent().getBooleanExtra("skip", true); // آیا استراحت آخر باید رد شود
-
-
-        int prepareTime = 5; // زمان آماده‌سازی
-        totalRemainingTime = (work + rest) * totalSets + prepareTime - (skip ? rest : 0);
+        psv = ps ? psv : 0; // زمان آماده‌سازی
+        totalRemainingTime = (work + rest) * totalSets + psv - (skip ? rest : 0);
 
         // شروع تایمر کل
         startTotalTimer();
@@ -87,9 +95,9 @@ public class TimerActivity extends AppCompatActivity {
         int currentSetNumber = totalSets - sets + 1; // محاسبه شماره ست از 1 شروع شود
 
         // نمایش Work
-        if (isFirst)
+        if (isFirst && ps)
             updateProgressText(currentSetNumber, "Prepare", -1);
-        executeProgress(isFirst ? 5 : 0, "#696969", () -> {
+        executeProgress(isFirst && ps ? psv : 0, "#696969", () -> {
 
             updateProgressText(currentSetNumber, "Work", totalSets);
             executeProgress(isFirst ? workTime - 1 : workTime, "#008080", () -> { // اجرای Work
@@ -108,6 +116,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void executeProgress(int time, String color, Runnable onComplete) {
+
         View bottomView = findViewById(R.id.bottom_view);
         bottomView.setBackgroundColor(Color.parseColor(color));
 
@@ -125,11 +134,12 @@ public class TimerActivity extends AppCompatActivity {
             double remainingTime = time - (animation.getCurrentPlayTime() / 1000.0);
             updateTimeText(Math.max(0, remainingTime));
 
-            if (remainingTime <= 6 && remainingTime > 0 && lastTimeRead > remainingTime) {
-                int remainingInt = (int) Math.ceil(remainingTime);
-                lastTimeRead = remainingInt - 1;
-                playCountdownSound(remainingInt);
-            }
+            if (ss)
+                if (remainingTime <= 6 && remainingTime > 0 && lastTimeRead > remainingTime) {
+                    int remainingInt = (int) Math.ceil(remainingTime);
+                    lastTimeRead = remainingInt - 1;
+                    playCountdownSound(remainingInt);
+                }
         });
 
         animator.addListener(new AnimatorListenerAdapter() {
@@ -186,6 +196,7 @@ public class TimerActivity extends AppCompatActivity {
 
     }
 
+    public int UsedSecs = 0;
 
     private void updateTotalTimerText() {
         String formattedTime = formatTime(totalRemainingTime);
@@ -201,18 +212,31 @@ public class TimerActivity extends AppCompatActivity {
                 if (totalRemainingTime > 0) {
                     totalRemainingTime--; // کم کردن یک ثانیه
                     updateTotalTimerText(); // به‌روزرسانی تایمر کل
-
+                    UsedSecs++;
                     // اجرای دوباره Runnable بعد از 1 ثانیه
                     totalTimerHandler.postDelayed(this, 1000);
                 } else {
                     // وقتی تایمر کل به پایان رسید
                     totalTimerHandler.removeCallbacks(totalTimerRunnable);
+                    SaveTimes(UsedSecs - psv);
                 }
             }
         };
 
         // شروع اجرای Runnable
         totalTimerHandler.post(totalTimerRunnable);
+    }
+
+    private void SaveTimes(int usedSecs) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        int times = sharedPreferences.getInt("times", 0);
+        int secs = sharedPreferences.getInt("secs", 0);
+
+        editor.putInt("secs", secs + usedSecs);
+        editor.putInt("times", times + 1);
+        editor.apply();
     }
 
     private void updateTextWithAnimation(TextView textView, String newText) {

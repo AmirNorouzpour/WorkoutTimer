@@ -152,11 +152,19 @@
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_14sdp" />
 
-                    <TextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/prepare_time_value"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:text="5"
+                        android:textColor="#B3B3B3"
+                        android:textSize="@dimen/_15sdp" />
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5 sec"
+                        android:text="sec"
                         android:textColor="#B3B3B3"
                         android:textSize="@dimen/_15sdp" />
 
