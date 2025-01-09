@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.workouttimer.ui.notifications.NotificationsFragment"
+        android:name="com.example.workouttimer.ui.info.InfoFragment"
         android:label="@string/title_about"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_info" />
 </navigation>

@@ -43,6 +43,7 @@ dependencies {
     implementation libs.activity
     implementation libs.sdp
     implementation libs.grid
+    implementation libs.justifiedtextview
 
 
     testImplementation libs.junit
