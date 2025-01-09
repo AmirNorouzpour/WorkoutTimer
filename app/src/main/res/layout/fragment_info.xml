@@ -26,8 +26,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_20sdp"
-            android:text="asdasd"
+            android:text=" asdsdasd  "
+            android:textColor="@color/white"
             android:textSize="@dimen/_12sdp" />
+
+        <Button
+            android:id="@+id/rate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_14sdp"
+            android:backgroundTint="@color/white"
+            android:text="Rate Us"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="@dimen/_10sdp"
+            android:elevation="2dp" />
+
+        <Button
+            android:id="@+id/feedback_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_14sdp"
+            android:backgroundTint="@color/blue"
+            android:text="Send Feedback"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="@dimen/_10sdp"
+            android:elevation="2dp" />
+
+        <Button
+            android:id="@+id/donate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_14sdp"
+            android:backgroundTint="#FFCC00"
+            android:text="Donate (PayPal)"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="@dimen/_10sdp"
+            android:elevation="2dp" />
+
+
     </LinearLayout>
 
 

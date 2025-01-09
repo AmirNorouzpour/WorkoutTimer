@@ -27,6 +27,8 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 sdp ='com.intuit.sdp:sdp-android:1.1.1'
 grid = 'androidx.gridlayout:gridlayout:1.0.0'
 justifiedtextview = 'com.codesgood:justifiedtextview:1.1.0'
+core = 'com.google.android.play:core:1.10.3'
+
 
 
 [plugins]
