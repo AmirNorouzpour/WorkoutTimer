@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         });
 
         restDecrement.setOnClickListener(v -> {
-            if (restTime > 5) {
+            if (restTime >= 5) {
                 restTime -= 5;
                 restTimer.setText(formatTime(restTime));
                 SetTotal();

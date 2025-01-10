@@ -22,14 +22,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:orientation="horizontal">
 
                 <androidx.gridlayout.widget.GridLayout
                     android:id="@+id/box_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:columnCount="2"
+                    app:columnCount="3"
                     app:rowCount="1">
 
 
@@ -44,18 +44,11 @@
 
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/_20sdp" />
-
-                        <TextView
                             android:id="@+id/tvMins"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=""
+                            android:text="55"
+                            android:paddingTop="@dimen/_5sdp"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -66,7 +59,7 @@
                             android:text="Total Minutes"
                             android:textAlignment="center"
                             android:textColor="#fff"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
                     </LinearLayout>
 
@@ -80,18 +73,11 @@
                         app:layout_rowWeight="1">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/_20sdp" />
-
-                        <TextView
                             android:id="@+id/tvTimes"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=""
+                            android:text="17"
+                            android:paddingTop="@dimen/_5sdp"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -102,7 +88,37 @@
                             android:text="Total Times"
                             android:textAlignment="center"
                             android:textColor="#fff"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/background_rounded"
+                        android:orientation="vertical"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1">
+
+
+                        <TextView
+                            android:id="@+id/tv1Mins"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="74"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_40sdp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total Minutes"
+                            android:textAlignment="center"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_10sdp" />
 
                     </LinearLayout>
 
