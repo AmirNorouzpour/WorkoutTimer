@@ -362,6 +362,9 @@ public class TimerActivity extends AppCompatActivity {
         if (soundPool != null) {
             soundPool.release();
         }
+
+        if (ended)
+            SaveTimes(UsedSecs - psv);
     }
 
 }
