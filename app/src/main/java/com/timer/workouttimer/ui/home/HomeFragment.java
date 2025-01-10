@@ -1,4 +1,4 @@
-package com.example.workouttimer.ui.home;
+package com.timer.workouttimer.ui.home;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -16,11 +16,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.workouttimer.R;
-import com.example.workouttimer.TimerActivity;
-import com.example.workouttimer.databinding.FragmentHomeBinding;
+import com.timer.workouttimer.R;
+import com.timer.workouttimer.TimerActivity;
+import com.timer.workouttimer.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 

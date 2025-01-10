@@ -1,4 +1,4 @@
-package com.example.workouttimer;
+package com.timer.workouttimer;
 
 import org.junit.Test;
 

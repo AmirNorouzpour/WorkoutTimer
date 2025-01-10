@@ -1,4 +1,4 @@
-package com.example.workouttimer.ui.info;
+package com.timer.workouttimer.ui.info;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

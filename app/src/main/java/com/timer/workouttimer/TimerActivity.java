@@ -1,14 +1,18 @@
-package com.example.workouttimer;
+package com.timer.workouttimer;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -137,7 +141,7 @@ public class TimerActivity extends AppCompatActivity {
                 if (remainingTime <= 6 && remainingTime > 0 && lastTimeRead > remainingTime) {
                     int remainingInt = (int) Math.ceil(remainingTime);
                     lastTimeRead = remainingInt - 1;
-                    playCountdownSound(remainingInt);
+                    playCountdownSound(remainingInt, vs);
                 }
         });
 
@@ -154,9 +158,36 @@ public class TimerActivity extends AppCompatActivity {
         animator.start();
     }
 
+    public void vibrateWithPatternForcefully(Context context) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
-    private void playCountdownSound(int number) {
+        if (vibrator != null && vibrator.hasVibrator()) {
+            long[] pattern = {0, 300, 1000, 300, 1000, 300, 1000, 300, 1000, 300}; // توقف، لرزش، توقف، لرزش
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1)); // -1 برای عدم تکرار
+            } else {
+                vibrator.vibrate(pattern, -1);
+            }
+        }
+    }
+
+    public void vibrateDeviceForcefully(Context context, long durationInMillis) {
+        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (vibrator != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                VibrationEffect vibrationEffect = VibrationEffect.createOneShot(durationInMillis, VibrationEffect.DEFAULT_AMPLITUDE);
+                vibrator.vibrate(vibrationEffect);
+            } else {
+                vibrator.vibrate(durationInMillis);
+            }
+        }
+    }
+
+    private void playCountdownSound(int number, boolean withVibrate) {
         new Thread(() -> {
+            if (withVibrate)
+                vibrateDeviceForcefully(this, 200);
             switch (number) {
                 case 1:
                     soundPool.play(sound1, 1, 1, 0, 0, 1);

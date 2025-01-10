@@ -1,6 +1,5 @@
-package com.example.workouttimer.ui.info;
+package com.timer.workouttimer.ui.info;
 
-import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.workouttimer.R;
-import com.example.workouttimer.databinding.FragmentInfoBinding;
+import com.timer.workouttimer.R;
+import com.timer.workouttimer.databinding.FragmentInfoBinding;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;

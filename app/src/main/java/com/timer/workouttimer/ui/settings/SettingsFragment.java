@@ -1,4 +1,4 @@
-package com.example.workouttimer.ui.settings;
+package com.timer.workouttimer.ui.settings;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
@@ -15,8 +16,8 @@ import android.widget.Switch;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.workouttimer.R;
-import com.example.workouttimer.databinding.FragmentSettingsBinding;
+import com.timer.workouttimer.R;
+import com.timer.workouttimer.databinding.FragmentSettingsBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class SettingsFragment extends Fragment {
     int PrepareSecValue = 5;
     TextInputEditText prepareEditTime;
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -61,6 +62,14 @@ public class SettingsFragment extends Fragment {
             this.PrepareSwValue = isChecked;
             SaveData();
         });
+
+        prepareEditTime.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                prepareEditTime.post(() -> prepareEditTime.selectAll());
+            }
+            return false;
+        });
+
 
         prepareEditTime.addTextChangedListener(new TextWatcher() {
 

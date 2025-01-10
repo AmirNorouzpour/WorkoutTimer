@@ -1,4 +1,4 @@
-package com.example.workouttimer;
+package com.timer.workouttimer;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.workouttimer", appContext.getPackageName());
+        assertEquals("com.timer.workouttimer", appContext.getPackageName());
     }
 }
