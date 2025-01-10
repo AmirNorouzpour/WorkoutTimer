@@ -6,4 +6,6 @@
     <string name="info">We are working hard to improve the app and create a better experience for you. Please help us by sharing your valuable feedback and introducing the app to your friends. Once we reach 2000 users, we will add the feature to create back-to-back workout sequences.
 
 Our goal is to keep the app free, and this is only possible with your support. You can support us by pressing the button below to give us a 5-star review on the Play Store or by donating through the other button. Thank you for being with us!</string>
+    <string name="fire">Fire</string>
+    <string name="ok">OK</string>
 </resources>

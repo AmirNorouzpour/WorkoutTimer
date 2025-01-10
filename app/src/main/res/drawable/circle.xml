@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- دایره بزرگ -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#344CB7" /> <!-- رنگ سبز روشن -->
+        </shape>
+    </item>
+
+    <!-- دایره میانی -->
+    <item
+        android:top="@dimen/_25sdp"
+        android:bottom="@dimen/_25sdp"
+        android:left="@dimen/_25sdp"
+        android:right="@dimen/_25sdp">
+        <shape android:shape="oval">
+            <solid android:color="#577BC1" /> <!-- رنگ سبز میانی -->
+        </shape>
+    </item>
+
+    <!-- دایره کوچک -->
+    <item
+        android:top="@dimen/_50sdp"
+        android:bottom="@dimen/_50sdp"
+        android:left="@dimen/_50sdp"
+        android:right="@dimen/_50sdp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

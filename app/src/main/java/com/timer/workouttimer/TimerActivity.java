@@ -18,18 +18,32 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.timer.workouttimer.helper.WorkoutDatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class TimerActivity extends AppCompatActivity {
 
-    private TextView progressTextTime; // TextView برای نمایش متن زمان و ست
+    private TextView progressTextTime, resultTime; // TextView برای نمایش متن زمان و ست
     private TextView progressTextPhase; // TextView برای نمایش متن زمان و ست
     private int totalSets; // تعداد کل ست‌ها (برای نمایش شماره ست‌ها)
     private TextView totalTimerText; // TextView برای تایمر کلی
     private ImageButton closeBtn;
+    private FrameLayout timerBox;
+    private LinearLayout endBox;
+    private Button closeEndBtn;
     private int totalRemainingTime; // زمان کل باقی‌مانده به ثانیه
     private Handler totalTimerHandler = new Handler();
     private Runnable totalTimerRunnable;
@@ -39,6 +53,8 @@ public class TimerActivity extends AppCompatActivity {
     boolean isFirst = true;
     private boolean ss, vs, ps;
     private int psv;
+    private int rate = 2;
+    private ImageView hard, good, easy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +75,32 @@ public class TimerActivity extends AppCompatActivity {
         ps = getIntent().getBooleanExtra("ps", true);
         psv = getIntent().getIntExtra("psv", 5);
 
+        resultTime = findViewById(R.id.resultTime);
+        hard = findViewById(R.id.hard);
+        hard.setOnClickListener(view -> {
+            rate = 3;
+            hard.setBackgroundColor(Color.parseColor("#333333"));
+            easy.setBackgroundColor(Color.parseColor("#141212"));
+            good.setBackgroundColor(Color.parseColor("#141212"));
+        });
+
+        good = findViewById(R.id.good);
+        good.setOnClickListener(view -> {
+            rate = 2;
+            good.setBackgroundColor(Color.parseColor("#333333"));
+            easy.setBackgroundColor(Color.parseColor("#141212"));
+            hard.setBackgroundColor(Color.parseColor("#141212"));
+        });
+
+        easy = findViewById(R.id.easy);
+        easy.setOnClickListener(view -> {
+            rate = 1;
+            easy.setBackgroundColor(Color.parseColor("#333333"));
+            hard.setBackgroundColor(Color.parseColor("#141212"));
+            good.setBackgroundColor(Color.parseColor("#141212"));
+        });
+
+
         if (ss) {
             soundPool = new SoundPool.Builder()
                     .setMaxStreams(5)
@@ -76,10 +118,12 @@ public class TimerActivity extends AppCompatActivity {
         progressTextTime = findViewById(R.id.progress_text_time);
         totalTimerText = findViewById(R.id.total_timer);
         closeBtn = findViewById(R.id.close_button);
+        closeEndBtn = findViewById(R.id.closeEndbtn);
+        timerBox = findViewById(R.id.timerBox);
+        endBox = findViewById(R.id.endBox);
 
-        closeBtn.setOnClickListener(v -> {
-            this.finish();
-        });
+        closeBtn.setOnClickListener(v -> this.finish());
+        closeEndBtn.setOnClickListener(view -> this.finish());
 
         psv = ps ? psv : 0; // زمان آماده‌سازی
         totalRemainingTime = (work + rest) * totalSets + psv - (skip ? rest : 0);
@@ -111,7 +155,6 @@ public class TimerActivity extends AppCompatActivity {
                     });
                 } else {
                     SaveTimes(UsedSecs - psv);
-                    this.finish();
                 }
             });
         });
@@ -257,6 +300,9 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void SaveTimes(int usedSecs) {
+        timerBox.setVisibility(View.GONE);
+        endBox.setVisibility(View.VISIBLE);
+        resultTime.setText(formatTime(usedSecs));
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -266,6 +312,16 @@ public class TimerActivity extends AppCompatActivity {
         editor.putInt("secs", secs + usedSecs);
         editor.putInt("times", times + 1);
         editor.apply();
+
+        WorkoutDatabaseHelper dbHelper = new WorkoutDatabaseHelper(this);
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
+        String currentDate = df.format(c);
+        int userRate = 3;
+        dbHelper.addWorkout(currentDate, usedSecs, userRate);
+
     }
 
     private void updateTextWithAnimation(TextView textView, String newText) {
