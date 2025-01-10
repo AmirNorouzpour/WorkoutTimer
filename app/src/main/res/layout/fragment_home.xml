@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
@@ -15,10 +15,14 @@
         tools:context=".ui.home.HomeFragment">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:weightSum="100">
+            android:weightSum="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,8 +51,8 @@
                             android:id="@+id/tvMins"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="55"
                             android:paddingTop="@dimen/_5sdp"
+                            android:text="55"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -76,8 +80,8 @@
                             android:id="@+id/tvTimes"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="17"
                             android:paddingTop="@dimen/_5sdp"
+                            android:text="17"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -106,8 +110,8 @@
                             android:id="@+id/tv1Mins"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="74"
                             android:paddingTop="@dimen/_5sdp"
+                            android:text="74"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
