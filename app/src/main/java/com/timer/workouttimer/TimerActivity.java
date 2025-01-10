@@ -51,7 +51,7 @@ public class TimerActivity extends AppCompatActivity {
     private int sound1, sound2, sound3, sound4, sound5; // شناسه‌های صداها
     private int lastTimeRead = 1000; // برای جلوگیری از پخش چندباره
     boolean isFirst = true;
-    private boolean ss, vs, ps;
+    private boolean ss, vs, ps, ended;
     private int psv;
     private int rate = 2;
     private ImageView hard, good, easy;
@@ -122,8 +122,16 @@ public class TimerActivity extends AppCompatActivity {
         timerBox = findViewById(R.id.timerBox);
         endBox = findViewById(R.id.endBox);
 
-        closeBtn.setOnClickListener(v -> this.finish());
-        closeEndBtn.setOnClickListener(view -> this.finish());
+        closeBtn.setOnClickListener(v -> {
+            if (ended)
+                SaveTimes(UsedSecs - psv);
+            this.finish();
+        });
+        closeEndBtn.setOnClickListener(v -> {
+            if (ended)
+                SaveTimes(UsedSecs - psv);
+            this.finish();
+        });
 
         psv = ps ? psv : 0; // زمان آماده‌سازی
         totalRemainingTime = (work + rest) * totalSets + psv - (skip ? rest : 0);
@@ -154,7 +162,11 @@ public class TimerActivity extends AppCompatActivity {
                         executeSet(sets - 1, workTime, restTime, skipLastRest); // اجرای ست بعدی
                     });
                 } else {
-                    SaveTimes(UsedSecs - psv);
+                    ended = true;
+                    timerBox.setVisibility(View.GONE);
+                    endBox.setVisibility(View.VISIBLE);
+                    resultTime.setText(formatTime(UsedSecs - psv));
+                    resultTime.setText(formatTime(UsedSecs - psv));
                 }
             });
         });
@@ -300,19 +312,6 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void SaveTimes(int usedSecs) {
-        timerBox.setVisibility(View.GONE);
-        endBox.setVisibility(View.VISIBLE);
-        resultTime.setText(formatTime(usedSecs));
-        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        int times = sharedPreferences.getInt("times", 0);
-        int secs = sharedPreferences.getInt("secs", 0);
-
-        editor.putInt("secs", secs + usedSecs);
-        editor.putInt("times", times + 1);
-        editor.apply();
-
         WorkoutDatabaseHelper dbHelper = new WorkoutDatabaseHelper(this);
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);

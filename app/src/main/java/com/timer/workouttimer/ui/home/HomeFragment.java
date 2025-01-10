@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import com.timer.workouttimer.R;
 import com.timer.workouttimer.TimerActivity;
 import com.timer.workouttimer.databinding.FragmentHomeBinding;
+import com.timer.workouttimer.helper.WorkoutDatabaseHelper;
+import com.timer.workouttimer.helper.WorkoutSummary;
 
 public class HomeFragment extends Fragment {
 
@@ -131,8 +133,8 @@ public class HomeFragment extends Fragment {
         restTimer.setText(formatTime(restTime));
         skipLastRest.setChecked(this.skipLastRest);
         SetTotal();
-        tvMin.setText((secs / 60) + "");
-        tvTime.setText(times + "");
+
+        this.refreshData();
         return root;
     }
 
@@ -159,9 +161,6 @@ public class HomeFragment extends Fragment {
         vs = sharedPreferences.getBoolean("vs", false);
         ps = sharedPreferences.getBoolean("ps", true);
         psv = sharedPreferences.getInt("psv", 5);
-
-        times = sharedPreferences.getInt("times", 0);
-        secs = sharedPreferences.getInt("secs", 0);
     }
 
     @SuppressLint("DefaultLocale")
@@ -183,13 +182,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        RefreshData();
+        refreshData();
     }
 
-    public void RefreshData() {
-        LoadData();
-        tvMin.setText((secs / 60) + "");
-        tvTime.setText(times + "");
+    public void refreshData() {
+        WorkoutDatabaseHelper workoutDatabaseHelper = new WorkoutDatabaseHelper(getActivity());
+        WorkoutSummary res = workoutDatabaseHelper.getWorkoutSummary();
+        tvMin.setText((res.totalDuration / 60) + "");
+        tvTime.setText(res.totalWorkouts + "");
     }
 
     @Override

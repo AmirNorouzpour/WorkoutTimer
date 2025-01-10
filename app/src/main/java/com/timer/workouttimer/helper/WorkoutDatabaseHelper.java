@@ -53,6 +53,21 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public WorkoutSummary getWorkoutSummary() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) AS count, SUM(" + COLUMN_DURATION + ") AS totalDuration FROM " + TABLE_WORKOUTS;
+        Cursor cursor = db.rawQuery(query, null);
+
+        WorkoutSummary summary = new WorkoutSummary();
+        if (cursor.moveToFirst()) {
+            summary.totalWorkouts = cursor.getInt(cursor.getColumnIndexOrThrow("count"));
+            summary.totalDuration = cursor.getInt(cursor.getColumnIndexOrThrow("totalDuration"));
+        }
+        cursor.close();
+        db.close();
+        return summary;
+    }
+
     // بازیابی همه رکوردها
     public List<Workout> getAllWorkouts() {
         List<Workout> workoutList = new ArrayList<>();
