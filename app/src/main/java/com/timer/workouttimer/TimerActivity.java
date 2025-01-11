@@ -48,7 +48,7 @@ public class TimerActivity extends AppCompatActivity {
     private int sound1, sound2, sound3, sound4, sound5; // شناسه‌های صداها
     private int lastTimeRead = 1000; // برای جلوگیری از پخش چندباره
     boolean isFirst = true;
-    private boolean ss, vs, ps, ended, _skipLastRest;
+    private boolean ss, vs, ps, ended, _skipLastRest, saved;
     private int psv;
     private int rate = 2;
     private ImageView hard, good, easy;
@@ -307,7 +307,7 @@ public class TimerActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
         String currentDate = df.format(c);
         dbHelper.addWorkout(currentDate, totalWork, totalRest, rate);
-
+        saved = true;
     }
 
     private int calcTotalRest() {
@@ -358,7 +358,7 @@ public class TimerActivity extends AppCompatActivity {
             soundPool.release();
         }
 
-        if (ended)
+        if (ended && !saved)
             SaveTimes();
     }
 

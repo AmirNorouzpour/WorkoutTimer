@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
     int workTime = 30;
     int restTime = 15;
     boolean skipLastRest = true;
-    TextView timer_text, totalWorkout, totalWorkoutMin, totalRestMin;
+    TextView totalTime, totalWorkout, totalWorkoutMin, totalRestMin;
     boolean ss, vs, ps;
     int psv;
 
@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
         totalWorkout = root.findViewById(R.id.totalWorkout);
         totalWorkoutMin = root.findViewById(R.id.totalWorkoutMin);
         totalRestMin = root.findViewById(R.id.totalRestMin);
+        totalTime = root.findViewById(R.id.timer_text);
         ConstraintLayout start_workout = root.findViewById(R.id.start);
 
         start_workout.setOnClickListener(view -> {
@@ -178,7 +179,7 @@ public class HomeFragment extends Fragment {
         int total = works + rests;
         if (skipLastRest)
             total = total - restTime;
-        timer_text.setText(formatTime(total));
+        totalTime.setText(formatTime(total));
         SaveData();
     }
 

@@ -90,7 +90,7 @@
         android:layout_height="match_parent"
         android:background="#000957"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <!-- Top Section -->
         <LinearLayout
@@ -182,7 +182,7 @@
                 android:paddingTop="@dimen/_5sdp">
 
                 <TextView
-                    android:id="@+id/restTime"
+                    android:id="@+id/resultTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -192,7 +192,7 @@
                     android:textSize="@dimen/_18sdp" />
 
                 <TextView
-                    android:id="@+id/resultTime"
+                    android:id="@+id/restTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
