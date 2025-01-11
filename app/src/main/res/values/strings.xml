@@ -52,4 +52,5 @@ Our goal is to keep the app free, and this is only possible with your support. Y
     <string name="prepare_time">Prepare Time</string>
     <string name="time">Time</string>
     <string name="sec">sec</string>
+    <string name="sound">Sound</string>
 </resources>
