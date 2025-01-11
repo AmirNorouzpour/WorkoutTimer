@@ -152,7 +152,8 @@
                         android:layout_height="wrap_content"
                         android:text="SET"
                         android:textColor="#CCCCCC"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_14sdp"
+                        android:paddingTop="@dimen/_5sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -211,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:text="WORK"
                         android:textColor="#00FF00"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_13sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -270,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:text="REST"
                         android:textColor="#007BFF"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_14sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -330,7 +331,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingLeft="@dimen/_20sdp"
+                        android:paddingLeft="@dimen/_15sdp"
                         android:text="Skip last rest"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_16sdp" />
@@ -339,7 +340,7 @@
                         android:id="@+id/switch_skip_last_rest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
                         android:checked="true"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_16sdp" />
@@ -398,6 +399,31 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mlutiBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/background_rounded"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:clickable="true"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_plus"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create multi exercise workout"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_10sdp" />
             </LinearLayout>
 
         </LinearLayout>

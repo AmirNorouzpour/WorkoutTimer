@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -43,6 +45,12 @@ public class HomeFragment extends Fragment {
         Button buttonIncrement = root.findViewById(R.id.button_sets_increment);
         Button buttonDecrement = root.findViewById(R.id.button_sets_decrement);
         TextView textViewValue = root.findViewById(R.id.textview_sets_timer);
+        LinearLayout mlutiBtn = root.findViewById(R.id.mlutiBtn);
+
+        mlutiBtn.setOnClickListener(view -> {
+            Toast.makeText(getActivity(), "Will be added in the next version.", Toast.LENGTH_SHORT).show();
+        });
+
         tvMin = root.findViewById(R.id.tvMins);
         tvTime = root.findViewById(R.id.tvTimes);
         timer_text = root.findViewById(R.id.timer_text);
