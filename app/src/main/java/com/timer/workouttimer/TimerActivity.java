@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.SoundPool;
 import android.os.Build;
@@ -62,7 +63,7 @@ public class TimerActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // دریافت داده‌های Intent
         totalSets = getIntent().getIntExtra("sets", 2); // تعداد کل ست‌ها
         _workTime = getIntent().getIntExtra("work", 30); // مدت زمان work
