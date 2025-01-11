@@ -1,10 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Light Theme -->
+<resources>
     <style name="Theme.WorkoutTimer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- تغییر رنگ‌های اصلی پروژه -->
         <item name="colorPrimary">#FFEB3B</item>
         <item name="colorPrimaryVariant">#000000</item>
-        <item name="colorAccent">#FFEB3B</item> <!-- سبز به جای صورتی -->
-        <item name="android:colorControlActivated">#FFEB3B</item> <!-- برای Switch و RadioButton -->
+        <item name="colorAccent">#FFEB3B</item>
+        <item name="android:colorControlActivated">#FFEB3B</item>
+        <item name="android:fontFamily">@font/rm</item>
+        <item name="fontFamily">@font/rm</item>
     </style>
 </resources>
