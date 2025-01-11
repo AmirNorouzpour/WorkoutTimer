@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.info.InfoFragment">
 
-
+        <TextView
+            android:id="@+id/emptyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your workout list is empty !"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_workouts"

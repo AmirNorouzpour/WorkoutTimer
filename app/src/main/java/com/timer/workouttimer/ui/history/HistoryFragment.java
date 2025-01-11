@@ -33,6 +33,10 @@ public class HistoryFragment extends Fragment {
         WorkoutDatabaseHelper dbHelper = new WorkoutDatabaseHelper(getActivity());
         List<Workout> workoutList = dbHelper.getAllWorkouts();
 
+        TextView emptyTv = root.findViewById(R.id.emptyTv);
+        if (!workoutList.isEmpty())
+            emptyTv.setVisibility(View.GONE);
+
         RecyclerView recyclerView = root.findViewById(R.id.rv_workouts);
         WorkoutAdapter adapter = new WorkoutAdapter(workoutList);
 
