@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Workout Timer</string>
-    <string name="title_home">Workout Timer</string>
+    <string name="title_home">Timer</string>
     <string name="title_settings">Settings</string>
     <string name="title_about">About Us</string>
     <string name="info">We are working hard to improve the app and create a better experience for you. Please help us by sharing your valuable feedback and introducing the app to your friends. Once we reach 2000 users, we will add the feature to create back-to-back workout sequences.
@@ -33,4 +33,8 @@ Our goal is to keep the app free, and this is only possible with your support. Y
     <string name="playicon">playIcon</string>
     <string name="create_multi_exercise_workout">Create multi exercise workout</string>
     <string name="rest">REST</string>
+    <string name="history">History</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert">Alert !</string>
 </resources>

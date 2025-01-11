@@ -44,6 +44,7 @@ dependencies {
     implementation libs.sdp
     implementation libs.grid
     implementation libs.justifiedtextview
+    implementation libs.power.menu
     implementation libs.core
 
 

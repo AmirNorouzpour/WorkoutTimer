@@ -75,7 +75,8 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         List<Workout> workoutList = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TABLE_WORKOUTS;
+        // SELECT همه ستون‌ها و مرتب‌سازی بر اساس تاریخ به ترتیب نزولی
+        String selectQuery = "SELECT * FROM " + TABLE_WORKOUTS + " ORDER BY " + COLUMN_DATE + " DESC";
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
@@ -97,9 +98,10 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         return workoutList;
     }
 
-    public void deleteAllWorkouts() {
+
+    public void deleteWorkout(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_WORKOUTS);
+        db.execSQL("DELETE FROM " + TABLE_WORKOUTS + " WHERE " + COLUMN_ID + " = " + id);
         db.close();
     }
 }
