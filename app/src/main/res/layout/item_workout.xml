@@ -34,7 +34,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_weight="1"
                 android:src="@drawable/dots"
-                android:contentDescription="dots"
+                android:contentDescription="@string/dots"
                 app:tint="@color/gray" />
 
 
@@ -78,7 +78,7 @@
                 android:id="@+id/rate"
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
-                android:contentDescription="rate"
+                android:contentDescription="@string/rate"
                 android:src="@drawable/good" />
 
         </LinearLayout>
