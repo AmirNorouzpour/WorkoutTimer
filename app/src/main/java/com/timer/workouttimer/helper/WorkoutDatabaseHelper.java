@@ -75,7 +75,6 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         List<Workout> workoutList = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        // SELECT همه ستون‌ها و مرتب‌سازی بر اساس تاریخ به ترتیب نزولی
         String selectQuery = "SELECT * FROM " + TABLE_WORKOUTS + " ORDER BY " + COLUMN_DATE + " DESC";
         Cursor cursor = db.rawQuery(selectQuery, null);
 

@@ -1,5 +1,6 @@
 package com.timer.workouttimer.ui.info;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -29,8 +30,7 @@ public class InfoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        InfoViewModel viewModel =
-                new ViewModelProvider(this).get(InfoViewModel.class);
+        new ViewModelProvider(this).get(InfoViewModel.class);
 
         binding = FragmentInfoBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -49,11 +49,11 @@ public class InfoFragment extends Fragment {
 
         Button feedback_button = root.findViewById(R.id.feedback_button);
         feedback_button.setOnClickListener(v -> {
-            String recipient = "axbot2@gmail.com"; // ایمیل گیرنده
-            String subject = "Workout Timer Feedback"; // موضوع ایمیل
+            String recipient = "axbot2@gmail.com";
+            String subject = "Workout Timer Feedback";
 
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-            emailIntent.setData(Uri.parse("mailto:")); // فقط برای اپلیکیشن‌های ایمیل
+            emailIntent.setData(Uri.parse("mailto:"));
             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{recipient});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
@@ -67,35 +67,28 @@ public class InfoFragment extends Fragment {
         return root;
     }
 
-    private void Donate(){
-
-
-    }
-
     public void showRateDialog(int type) {
 
         if (type == 1) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getActivity().getPackageName()));
-            try {
-                startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getActivity().getPackageName())));
+            Activity activity = getActivity();
+            if (activity != null) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity.getPackageName()));
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + activity.getPackageName())));
+                }
             }
         } else {
-            // ایجاد ReviewManager
-            ReviewManager reviewManager = ReviewManagerFactory.create(getActivity());
+            ReviewManager reviewManager = ReviewManagerFactory.create(requireContext());
 
-            // درخواست برای دریافت ReviewInfo
             Task<ReviewInfo> request = reviewManager.requestReviewFlow();
 
             request.addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    // اگر موفق شد، دیالوگ را نمایش دهید
                     ReviewInfo reviewInfo = task.getResult();
-                    Task<Void> flow = reviewManager.launchReviewFlow(getActivity(), reviewInfo);
-                    flow.addOnCompleteListener(flowTask -> {
-                        Log.d("RateDialog", "Rate dialog completed.");
-                    });
+                    Task<Void> flow = reviewManager.launchReviewFlow(requireActivity(), reviewInfo);
+                    flow.addOnCompleteListener(flowTask -> Log.d("RateDialog", "Rate dialog completed."));
                 } else {
                     Log.e("RateDialog", "Error: " + task.getException());
                 }
