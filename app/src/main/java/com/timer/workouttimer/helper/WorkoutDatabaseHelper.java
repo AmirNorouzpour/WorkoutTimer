@@ -17,7 +17,8 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_WORKOUTS = "workouts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DATE = "date";
-    private static final String COLUMN_DURATION = "duration";
+    private static final String COLUMN_WORK = "work";
+    private static final String COLUMN_REST = "rest";
     private static final String COLUMN_RATE = "rate";
 
     public WorkoutDatabaseHelper(Context context) {
@@ -29,7 +30,8 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         String createTable = "CREATE TABLE " + TABLE_WORKOUTS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_DATE + " TEXT, "
-                + COLUMN_DURATION + " INTEGER, "
+                + COLUMN_WORK + " INTEGER, "
+                + COLUMN_REST + " INTEGER, "
                 + COLUMN_RATE + " INTEGER)";
         db.execSQL(createTable);
     }
@@ -40,13 +42,13 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // افزودن رکورد جدید
-    public void addWorkout(String date, int duration, int rate) {
+    public void addWorkout(String date, int work, int rest, int rate) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_DATE, date);
-        values.put(COLUMN_DURATION, duration);
+        values.put(COLUMN_WORK, work);
+        values.put(COLUMN_REST, rest);
         values.put(COLUMN_RATE, rate);
 
         db.insert(TABLE_WORKOUTS, null, values);
@@ -55,20 +57,20 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
 
     public WorkoutSummary getWorkoutSummary() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT COUNT(*) AS count, SUM(" + COLUMN_DURATION + ") AS totalDuration FROM " + TABLE_WORKOUTS;
+        String query = "SELECT COUNT(*) AS count, SUM(" + COLUMN_WORK + ") AS totalWork, SUM(" + COLUMN_REST + ") AS totalRest FROM " + TABLE_WORKOUTS;
         Cursor cursor = db.rawQuery(query, null);
 
         WorkoutSummary summary = new WorkoutSummary();
         if (cursor.moveToFirst()) {
             summary.totalWorkouts = cursor.getInt(cursor.getColumnIndexOrThrow("count"));
-            summary.totalDuration = cursor.getInt(cursor.getColumnIndexOrThrow("totalDuration"));
+            summary.totalWork = cursor.getInt(cursor.getColumnIndexOrThrow("totalWork"));
+            summary.totalRest = cursor.getInt(cursor.getColumnIndexOrThrow("totalRest"));
         }
         cursor.close();
         db.close();
         return summary;
     }
 
-    // بازیابی همه رکوردها
     public List<Workout> getAllWorkouts() {
         List<Workout> workoutList = new ArrayList<>();
 
@@ -81,7 +83,8 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
                 Workout workout = new Workout(
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DURATION)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WORK)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_REST)),
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATE))
                 );
                 workoutList.add(workout);
@@ -94,7 +97,6 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         return workoutList;
     }
 
-    // حذف همه رکوردها
     public void deleteAllWorkouts() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_WORKOUTS);

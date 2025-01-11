@@ -34,9 +34,9 @@ public class HomeFragment extends Fragment {
     int workTime = 30;
     int restTime = 15;
     boolean skipLastRest = true;
-    TextView timer_text, tvMin, tvTime;
+    TextView timer_text, totalWorkout, totalWorkoutMin, totalRestMin;
     boolean ss, vs, ps;
-    int psv, times, secs;
+    int psv;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -45,15 +45,13 @@ public class HomeFragment extends Fragment {
         Button buttonIncrement = root.findViewById(R.id.button_sets_increment);
         Button buttonDecrement = root.findViewById(R.id.button_sets_decrement);
         TextView textViewValue = root.findViewById(R.id.textview_sets_timer);
-        LinearLayout mlutiBtn = root.findViewById(R.id.mlutiBtn);
+        LinearLayout multipleBtn = root.findViewById(R.id.mlutiBtn);
 
-        mlutiBtn.setOnClickListener(view -> {
-            Toast.makeText(getActivity(), "Will be added in the next version.", Toast.LENGTH_SHORT).show();
-        });
+        multipleBtn.setOnClickListener(view -> Toast.makeText(getActivity(), "Will be added in the next version.", Toast.LENGTH_SHORT).show());
 
-        tvMin = root.findViewById(R.id.tvMins);
-        tvTime = root.findViewById(R.id.tvTimes);
-        timer_text = root.findViewById(R.id.timer_text);
+        totalWorkout = root.findViewById(R.id.totalWorkout);
+        totalWorkoutMin = root.findViewById(R.id.totalWorkoutMin);
+        totalRestMin = root.findViewById(R.id.totalRestMin);
         ConstraintLayout start_workout = root.findViewById(R.id.start);
 
         start_workout.setOnClickListener(view -> {
@@ -71,23 +69,17 @@ public class HomeFragment extends Fragment {
             SaveData();
         });
 
-        buttonIncrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sets++;
-                textViewValue.setText(String.valueOf(sets));
-                SetTotal();
-            }
+        buttonIncrement.setOnClickListener(v -> {
+            sets++;
+            textViewValue.setText(String.valueOf(sets));
+            SetTotal();
         });
 
-        buttonDecrement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (sets > 1) {
-                    sets--; //
-                    textViewValue.setText(String.valueOf(sets));
-                    SetTotal();
-                }
+        buttonDecrement.setOnClickListener(v -> {
+            if (sets > 1) {
+                sets--; //
+                textViewValue.setText(String.valueOf(sets));
+                SetTotal();
             }
         });
 
@@ -187,6 +179,7 @@ public class HomeFragment extends Fragment {
         if (skipLastRest)
             total = total - restTime;
         timer_text.setText(formatTime(total));
+        SaveData();
     }
 
     @Override
@@ -198,8 +191,9 @@ public class HomeFragment extends Fragment {
     public void refreshData() {
         WorkoutDatabaseHelper workoutDatabaseHelper = new WorkoutDatabaseHelper(getActivity());
         WorkoutSummary res = workoutDatabaseHelper.getWorkoutSummary();
-        tvMin.setText((res.totalDuration / 60) + "");
-        tvTime.setText(res.totalWorkouts + "");
+        totalWorkoutMin.setText(String.valueOf(res.totalWork / 60));
+        totalWorkout.setText(String.valueOf(res.totalWorkouts));
+        totalRestMin.setText(String.valueOf((res.totalRest / 60)));
     }
 
     @Override

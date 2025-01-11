@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.SoundPool;
 import android.os.Build;
@@ -36,25 +35,24 @@ import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity {
 
-    private TextView progressTextTime, resultTime; // TextView برای نمایش متن زمان و ست
+    private TextView progressTextTime, resultTime, restTime;
     private TextView progressTextPhase; // TextView برای نمایش متن زمان و ست
     private int totalSets; // تعداد کل ست‌ها (برای نمایش شماره ست‌ها)
     private TextView totalTimerText; // TextView برای تایمر کلی
-    private ImageButton closeBtn;
     private FrameLayout timerBox;
     private LinearLayout endBox;
-    private Button closeEndBtn;
     private int totalRemainingTime; // زمان کل باقی‌مانده به ثانیه
-    private Handler totalTimerHandler = new Handler();
+    private final Handler totalTimerHandler = new Handler();
     private Runnable totalTimerRunnable;
     private SoundPool soundPool;
     private int sound1, sound2, sound3, sound4, sound5; // شناسه‌های صداها
     private int lastTimeRead = 1000; // برای جلوگیری از پخش چندباره
     boolean isFirst = true;
-    private boolean ss, vs, ps, ended;
+    private boolean ss, vs, ps, ended, _skipLastRest;
     private int psv;
     private int rate = 2;
     private ImageView hard, good, easy;
+    private int _workTime, _restTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,15 +65,16 @@ public class TimerActivity extends AppCompatActivity {
 
         // دریافت داده‌های Intent
         totalSets = getIntent().getIntExtra("sets", 2); // تعداد کل ست‌ها
-        int work = getIntent().getIntExtra("work", 30); // مدت زمان work
-        int rest = getIntent().getIntExtra("rest", 15); // مدت زمان rest
-        boolean skip = getIntent().getBooleanExtra("skip", true); // آیا استراحت آخر باید رد شود
+        _workTime = getIntent().getIntExtra("work", 30); // مدت زمان work
+        _restTime = getIntent().getIntExtra("rest", 15); // مدت زمان rest
+        _skipLastRest = getIntent().getBooleanExtra("skip", true); // آیا استراحت آخر باید رد شود
         ss = getIntent().getBooleanExtra("ss", true);
         vs = getIntent().getBooleanExtra("vs", false);
         ps = getIntent().getBooleanExtra("ps", true);
         psv = getIntent().getIntExtra("psv", 5);
 
         resultTime = findViewById(R.id.resultTime);
+        restTime = findViewById(R.id.restTime);
         hard = findViewById(R.id.hard);
         hard.setOnClickListener(view -> {
             rate = 3;
@@ -117,36 +116,37 @@ public class TimerActivity extends AppCompatActivity {
         progressTextPhase = findViewById(R.id.progress_text_phase);
         progressTextTime = findViewById(R.id.progress_text_time);
         totalTimerText = findViewById(R.id.total_timer);
-        closeBtn = findViewById(R.id.close_button);
-        closeEndBtn = findViewById(R.id.closeEndbtn);
+        ImageButton closeBtn = findViewById(R.id.close_button);
+        Button closeEndBtn = findViewById(R.id.closeEndbtn);
         timerBox = findViewById(R.id.timerBox);
         endBox = findViewById(R.id.endBox);
 
         closeBtn.setOnClickListener(v -> {
             if (ended)
-                SaveTimes(UsedSecs - psv);
+                SaveTimes();
             this.finish();
         });
         closeEndBtn.setOnClickListener(v -> {
             if (ended)
-                SaveTimes(UsedSecs - psv);
+                SaveTimes();
             this.finish();
         });
 
-        psv = ps ? psv : 0; // زمان آماده‌سازی
-        totalRemainingTime = (work + rest) * totalSets + psv - (skip ? rest : 0);
+        psv = ps ? psv : 0;
+        totalRemainingTime = calcTotalTime();
 
-        // شروع تایمر کل
         startTotalTimer();
-
-        // اجرای انیمیشن‌ها
-        executeSet(totalSets, work, rest, skip);
+        executeSet(totalSets);
     }
 
-    private void executeSet(int sets, int workTime, int restTime, boolean skipLastRest) {
-        if (sets <= 0) return; // اگر تعداد ست‌ها صفر باشد، کار متوقف می‌شود.
+    private int calcTotalTime() {
+        return (_workTime + _restTime) * totalSets + psv - (_skipLastRest ? _restTime : 0);
+    }
 
-        int currentSetNumber = totalSets - sets + 1; // محاسبه شماره ست از 1 شروع شود
+    private void executeSet(int sets) {
+        if (sets <= 0) return;
+
+        int currentSetNumber = totalSets - sets + 1;
 
         // نمایش Work
         if (isFirst && ps)
@@ -154,19 +154,19 @@ public class TimerActivity extends AppCompatActivity {
         executeProgress(isFirst && ps ? psv : 0, "#696969", () -> {
 
             updateProgressText(currentSetNumber, "Work", totalSets);
-            executeProgress(isFirst ? workTime - 1 : workTime, "#008080", () -> { // اجرای Work
-                if (sets > 1 || !skipLastRest) { // نمایش Rest
+            executeProgress(isFirst ? _workTime - 1 : _workTime, "#008080", () -> {
+                if (sets > 1 || !_skipLastRest) { // نمایش Rest
                     isFirst = false;
-                    updateProgressText(currentSetNumber, "Rest", skipLastRest ? totalSets - 1 : totalSets);
-                    executeProgress(restTime, "#1E90FF", () -> {
-                        executeSet(sets - 1, workTime, restTime, skipLastRest); // اجرای ست بعدی
+                    updateProgressText(currentSetNumber, "Rest", _skipLastRest ? totalSets - 1 : totalSets);
+                    executeProgress(_restTime, "#1E90FF", () -> {
+                        executeSet(sets - 1);
                     });
                 } else {
                     ended = true;
                     timerBox.setVisibility(View.GONE);
                     endBox.setVisibility(View.VISIBLE);
-                    resultTime.setText(formatTime(UsedSecs - psv));
-                    resultTime.setText(formatTime(UsedSecs - psv));
+                    resultTime.setText(formatTime(calcTotalWork()));
+                    restTime.setText(formatTime(calcTotalRest()));
                 }
             });
         });
@@ -213,18 +213,6 @@ public class TimerActivity extends AppCompatActivity {
         animator.start();
     }
 
-    public void vibrateWithPatternForcefully(Context context) {
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
-        if (vibrator != null && vibrator.hasVibrator()) {
-            long[] pattern = {0, 300, 1000, 300, 1000, 300, 1000, 300, 1000, 300}; // توقف، لرزش، توقف، لرزش
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1)); // -1 برای عدم تکرار
-            } else {
-                vibrator.vibrate(pattern, -1);
-            }
-        }
-    }
 
     public void vibrateDeviceForcefully(Context context, long durationInMillis) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -307,20 +295,29 @@ public class TimerActivity extends AppCompatActivity {
             }
         };
 
-        // شروع اجرای Runnable
         totalTimerHandler.post(totalTimerRunnable);
     }
 
-    private void SaveTimes(int usedSecs) {
+    private void SaveTimes() {
         WorkoutDatabaseHelper dbHelper = new WorkoutDatabaseHelper(this);
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 
+        int totalWork = calcTotalWork();
+        int totalRest = calcTotalRest();
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
         String currentDate = df.format(c);
-        int userRate = 3;
-        dbHelper.addWorkout(currentDate, usedSecs, userRate);
+        dbHelper.addWorkout(currentDate, totalWork, totalRest, rate);
 
+    }
+
+    private int calcTotalRest() {
+        return _restTime * totalSets - (_skipLastRest ? _restTime : 0);
+    }
+
+    private int calcTotalWork() {
+        return _workTime * totalSets;
     }
 
     private void updateTextWithAnimation(TextView textView, String newText) {
@@ -364,7 +361,7 @@ public class TimerActivity extends AppCompatActivity {
         }
 
         if (ended)
-            SaveTimes(UsedSecs - psv);
+            SaveTimes();
     }
 
 }
