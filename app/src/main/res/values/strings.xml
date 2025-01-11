@@ -32,4 +32,5 @@ Our goal is to keep the app free, and this is only possible with your support. Y
     <string name="start_workout">Start workout</string>
     <string name="playicon">playIcon</string>
     <string name="create_multi_exercise_workout">Create multi exercise workout</string>
+    <string name="rest">REST</string>
 </resources>
