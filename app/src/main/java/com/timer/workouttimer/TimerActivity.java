@@ -158,9 +158,7 @@ public class TimerActivity extends AppCompatActivity {
                 if (sets > 1 || !_skipLastRest) { // نمایش Rest
                     isFirst = false;
                     updateProgressText(currentSetNumber, "Rest", _skipLastRest ? totalSets - 1 : totalSets);
-                    executeProgress(_restTime, "#1E90FF", () -> {
-                        executeSet(sets - 1);
-                    });
+                    executeProgress(_restTime, "#1E90FF", () -> executeSet(sets - 1));
                 } else {
                     ended = true;
                     timerBox.setVisibility(View.GONE);

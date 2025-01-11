@@ -52,7 +52,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
-                            android:text="55"
+                            android:text="@string/_0"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -60,7 +60,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Workouts"
+                            android:text="@string/workouts"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_10sdp" />
@@ -81,7 +81,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
-                            android:text="17"
+                            android:text="@string/_0"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -89,7 +89,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Minutes Workout"
+                            android:text="@string/minutes_workout"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_10sdp" />
@@ -111,7 +111,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
-                            android:text="74"
+                            android:text="@string/_0"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_40sdp" />
@@ -119,7 +119,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Minutes Rest"
+                            android:text="@string/minutes_rest"
                             android:textAlignment="center"
                             android:textColor="#fff"
                             android:textSize="@dimen/_10sdp" />
@@ -150,10 +150,10 @@
                         android:id="@+id/title_sets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SET"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:text="@string/set"
                         android:textColor="#CCCCCC"
                         android:textSize="@dimen/_14sdp"
-                        android:paddingTop="@dimen/_5sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -164,7 +164,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="–"
+                        android:text="@string/mins"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -177,7 +177,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="1"
+                        android:text="@string/_1"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_26sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -191,7 +191,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="+"
+                        android:text="@string/plus"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -210,7 +210,7 @@
                         android:id="@+id/title_work"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="WORK"
+                        android:text="@string/work"
                         android:textColor="#00FF00"
                         android:textSize="@dimen/_13sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +223,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="–"
+                        android:text="@string/mins"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -236,7 +236,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="00:30"
+                        android:text="@string/_00_30_test"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_26sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -250,7 +250,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="+"
+                        android:text="@string/plus"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -282,7 +282,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="–"
+                        android:text="@string/mins"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -295,7 +295,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="00:20"
+                        android:text="@string/_00_30_test"
                         android:textColor="#CCCCCC"
                         android:textSize="@dimen/_26sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -309,7 +309,7 @@
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:background="@android:color/transparent"
-                        android:text="+"
+                        android:text="@string/plus"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_20sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -332,7 +332,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingLeft="@dimen/_15sdp"
-                        android:text="Skip last rest"
+                        android:paddingTop="@dimen/_15sdp"
+                        android:text="@string/skip_last_rest"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_16sdp" />
 
@@ -342,13 +343,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_15sdp"
                         android:checked="true"
+                        android:paddingLeft="@dimen/_15sdp"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_16sdp" />
                 </LinearLayout>
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -357,6 +358,7 @@
                     android:background="@drawable/background_rounded_white"
                     android:clickable="true"
                     android:elevation="@dimen/_4sdp"
+                    android:focusable="true"
                     android:padding="@dimen/_16sdp"
                     tools:ignore="MissingConstraints">
 
@@ -365,6 +367,7 @@
                         android:id="@+id/play_icon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:contentDescription="@string/playicon"
                         android:src="@drawable/ic_play_arrow"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -377,7 +380,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Start workout"
+                        android:text="@string/start_workout"
                         android:textColor="#000000"
                         android:textSize="@dimen/_14sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -390,7 +393,7 @@
                         android:id="@+id/timer_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="00:30"
+                        android:text="@string/_00_30_test"
                         android:textColor="#666666"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -400,27 +403,29 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/mlutiBtn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_margin="@dimen/_5sdp"
                 android:background="@drawable/background_rounded"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:clickable="true"
                 tools:ignore="MissingConstraints">
 
                 <ImageView
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/ic_plus"
+                    android:focusable="true"
+                    android:src="@drawable/ic_plus" />
 
-                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Create multi exercise workout"
+                    android:text="@string/create_multi_exercise_workout"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="@dimen/_10sdp" />
