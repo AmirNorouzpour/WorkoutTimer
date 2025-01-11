@@ -37,17 +37,17 @@ import java.util.Locale;
 public class TimerActivity extends AppCompatActivity {
 
     private TextView progressTextTime, resultTime, restTime;
-    private TextView progressTextPhase; // TextView برای نمایش متن زمان و ست
-    private int totalSets; // تعداد کل ست‌ها (برای نمایش شماره ست‌ها)
-    private TextView totalTimerText; // TextView برای تایمر کلی
+    private TextView progressTextPhase;
+    private int totalSets;
+    private TextView totalTimerText;
     private FrameLayout timerBox;
     private LinearLayout endBox;
-    private int totalRemainingTime; // زمان کل باقی‌مانده به ثانیه
+    private int totalRemainingTime;
     private final Handler totalTimerHandler = new Handler();
     private Runnable totalTimerRunnable;
     private SoundPool soundPool;
-    private int sound1, sound2, sound3, sound4, sound5; // شناسه‌های صداها
-    private int lastTimeRead = 1000; // برای جلوگیری از پخش چندباره
+    private int sound1, sound2, sound3, sound4, sound5;
+    private int lastTimeRead = 1000;
     boolean isFirst = true;
     private boolean ss, vs, ps, ended, _skipLastRest, saved;
     private int psv;
@@ -64,11 +64,11 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // دریافت داده‌های Intent
-        totalSets = getIntent().getIntExtra("sets", 2); // تعداد کل ست‌ها
-        _workTime = getIntent().getIntExtra("work", 30); // مدت زمان work
-        _restTime = getIntent().getIntExtra("rest", 15); // مدت زمان rest
-        _skipLastRest = getIntent().getBooleanExtra("skip", true); // آیا استراحت آخر باید رد شود
+
+        totalSets = getIntent().getIntExtra("sets", 2);
+        _workTime = getIntent().getIntExtra("work", 30);
+        _restTime = getIntent().getIntExtra("rest", 15);
+        _skipLastRest = getIntent().getBooleanExtra("skip", true);
         ss = getIntent().getBooleanExtra("ss", true);
         vs = getIntent().getBooleanExtra("vs", false);
         ps = getIntent().getBooleanExtra("ps", true);
@@ -113,7 +113,6 @@ public class TimerActivity extends AppCompatActivity {
             sound5 = soundPool.load(this, R.raw.number_5, 1);
         }
 
-        // دسترسی به TextView
         progressTextPhase = findViewById(R.id.progress_text_phase);
         progressTextTime = findViewById(R.id.progress_text_time);
         totalTimerText = findViewById(R.id.total_timer);
@@ -149,14 +148,14 @@ public class TimerActivity extends AppCompatActivity {
 
         int currentSetNumber = totalSets - sets + 1;
 
-        // نمایش Work
+
         if (isFirst && ps)
             updateProgressText(currentSetNumber, "Prepare", -1);
         executeProgress(isFirst && ps ? psv : 0, "#696969", () -> {
 
             updateProgressText(currentSetNumber, "Work", totalSets);
             executeProgress(isFirst ? _workTime - 1 : _workTime, "#008080", () -> {
-                if (sets > 1 || !_skipLastRest) { // نمایش Rest
+                if (sets > 1 || !_skipLastRest) {
                     isFirst = false;
                     updateProgressText(currentSetNumber, "Rest", _skipLastRest ? totalSets - 1 : totalSets);
                     executeProgress(_restTime, "#1E90FF", () -> executeSet(sets - 1));
@@ -177,7 +176,7 @@ public class TimerActivity extends AppCompatActivity {
         View bottomView = findViewById(R.id.bottom_view);
         bottomView.setBackgroundColor(Color.parseColor(color));
 
-        int screenHeight = getResources().getDisplayMetrics().heightPixels; // ارتفاع کل صفحه
+        int screenHeight = getResources().getDisplayMetrics().heightPixels;
 
         ValueAnimator animator = ValueAnimator.ofFloat(0, screenHeight);
         animator.setDuration(time * 1000L);
@@ -281,13 +280,11 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (totalRemainingTime > 0) {
-                    totalRemainingTime--; // کم کردن یک ثانیه
-                    updateTotalTimerText(); // به‌روزرسانی تایمر کل
+                    totalRemainingTime--;
+                    updateTotalTimerText();
                     UsedSecs++;
-                    // اجرای دوباره Runnable بعد از 1 ثانیه
                     totalTimerHandler.postDelayed(this, 1000);
                 } else {
-                    // وقتی تایمر کل به پایان رسید
                     totalTimerHandler.removeCallbacks(totalTimerRunnable);
 
                 }
@@ -329,14 +326,14 @@ public class TimerActivity extends AppCompatActivity {
 
     private void animateTextView(TextView textView) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(
-                1.0f, 1.2f, // بزرگ شدن از ۱ به ۱.۲
-                1.0f, 1.2f, // بزرگ شدن از ۱ به ۱.۲
-                Animation.RELATIVE_TO_SELF, 0.5f, // مرکز افقی
-                Animation.RELATIVE_TO_SELF, 0.5f // مرکز عمودی
+                1.0f, 1.2f,
+                1.0f, 1.2f,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
         );
-        scaleAnimation.setDuration(300); // مدت زمان انیمیشن
-        scaleAnimation.setRepeatMode(Animation.REVERSE); // بازگشت به حالت اولیه
-        scaleAnimation.setRepeatCount(1); // انیمیشن یک بار اجرا شود
+        scaleAnimation.setDuration(300);
+        scaleAnimation.setRepeatMode(Animation.REVERSE);
+        scaleAnimation.setRepeatCount(1);
         textView.startAnimation(scaleAnimation);
     }
 
