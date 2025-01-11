@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -107,7 +106,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         public void onItemClick(int position, PowerMenuItem item) {
             if (item.title == "Delete") {
                 PowerMenu powerDialog = (PowerMenu) item.tag;
-                View footerView = null;
+                View footerView;
                 if (powerDialog != null) {
                     footerView = powerDialog.getFooterView();
 

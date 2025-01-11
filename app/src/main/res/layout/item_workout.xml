@@ -34,7 +34,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_weight="1"
                 android:src="@drawable/dots"
-                android:tint="@color/gray" />
+                app:tint="@color/gray" />
 
 
         </LinearLayout>
