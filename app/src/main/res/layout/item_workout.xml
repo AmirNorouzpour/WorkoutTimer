@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="99"
-                android:text="Workout at 10:41 AM"
+                android:text="@string/workout_at_10_41_am"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
@@ -34,6 +34,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_weight="1"
                 android:src="@drawable/dots"
+                android:contentDescription="dots"
                 app:tint="@color/gray" />
 
 
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_rounded"
                 android:padding="8dp"
-                android:text="3m 30s"
+                android:text="@string/_3m_30s"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
 
@@ -62,7 +63,7 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_rounded"
                 android:padding="8dp"
-                android:text="Exercises: 1"
+                android:text="@string/exercises_1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10sdp" />
         </LinearLayout>
@@ -77,6 +78,7 @@
                 android:id="@+id/rate"
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
+                android:contentDescription="rate"
                 android:src="@drawable/good" />
 
         </LinearLayout>
