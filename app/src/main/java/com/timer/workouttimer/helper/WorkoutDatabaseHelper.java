@@ -6,8 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
 
@@ -29,7 +33,7 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_WORKOUTS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_DATE + " TEXT, "
+                + COLUMN_DATE + " DATE, "
                 + COLUMN_WORK + " INTEGER, "
                 + COLUMN_REST + " INTEGER, "
                 + COLUMN_RATE + " INTEGER)";
@@ -42,11 +46,14 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addWorkout(String date, int work, int rest, int rate) {
+    public void addWorkout(Date date, int work, int rest, int rate) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String formattedDate = dateFormat.format(date);
+
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DATE, date);
+        values.put(COLUMN_DATE, formattedDate);
         values.put(COLUMN_WORK, work);
         values.put(COLUMN_REST, rest);
         values.put(COLUMN_RATE, rate);
@@ -54,6 +61,7 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_WORKOUTS, null, values);
         db.close();
     }
+
 
     public WorkoutSummary getWorkoutSummary() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -80,9 +88,18 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
+                String dateString = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                Date date;
+                try {
+                    date = dateFormat.parse(dateString);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+
                 Workout workout = new Workout(
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        date,
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WORK)),
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_REST)),
                         cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RATE))
@@ -90,6 +107,7 @@ public class WorkoutDatabaseHelper extends SQLiteOpenHelper {
                 workoutList.add(workout);
             } while (cursor.moveToNext());
         }
+
 
         cursor.close();
         db.close();

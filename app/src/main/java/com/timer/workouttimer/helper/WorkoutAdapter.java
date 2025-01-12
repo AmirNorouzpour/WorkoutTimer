@@ -134,14 +134,10 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
         }
     };
 
-    public static String getRelativeDateTime(String dateString) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
-
+    public static String getRelativeDateTime(Date date) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
         try {
-            Date date = inputFormat.parse(dateString);
-
             if (date == null) {
                 return "";
             }

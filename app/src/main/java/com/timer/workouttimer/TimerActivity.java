@@ -29,10 +29,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.timer.workouttimer.helper.WorkoutDatabaseHelper;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -296,14 +294,11 @@ public class TimerActivity extends AppCompatActivity {
 
     private void SaveTimes() {
         WorkoutDatabaseHelper dbHelper = new WorkoutDatabaseHelper(this);
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
+        Date currentDate = Calendar.getInstance().getTime();
 
         int totalWork = calcTotalWork();
         int totalRest = calcTotalRest();
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault());
-        String currentDate = df.format(c);
         dbHelper.addWorkout(currentDate, totalWork, totalRest, rate);
         saved = true;
     }

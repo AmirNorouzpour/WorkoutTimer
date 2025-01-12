@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.timer.workouttimer.R;
@@ -25,15 +25,14 @@ import java.util.Objects;
 public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    Switch soundSwitch, SwVibrate, SwPrepare;
+
+    SwitchCompat soundSwitch, SwVibrate, SwPrepare;
     boolean soundSwitchValue, VibrateSwValue, PrepareSwValue;
     int PrepareSecValue = 5;
     TextInputEditText prepareEditTime;
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

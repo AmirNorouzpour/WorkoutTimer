@@ -45,7 +45,8 @@ dependencies {
     implementation libs.grid
     implementation libs.justifiedtextview
     implementation libs.power.menu
-    implementation libs.core
+    implementation libs.play
+    implementation libs.update
 
 
     testImplementation libs.junit

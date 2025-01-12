@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -125,7 +126,7 @@ public class HomeFragment extends Fragment {
 
         // Skip Last Rest Switch
         @SuppressLint("UseSwitchCompatOrMaterialCode")
-        Switch skipLastRest = root.findViewById(R.id.switch_skip_last_rest);
+        SwitchCompat skipLastRest = root.findViewById(R.id.switch_skip_last_rest);
         skipLastRest.setOnCheckedChangeListener((buttonView, isChecked) -> {
             this.skipLastRest = isChecked;
             SetTotal();
