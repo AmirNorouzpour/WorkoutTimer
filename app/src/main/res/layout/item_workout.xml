@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/inner"
         android:padding="12dp">
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:id="@+id/rate"
                 android:layout_width="@dimen/_28sdp"
                 android:layout_height="@dimen/_28sdp"
-                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:contentDescription="@string/rate"
                 android:src="@drawable/good" />
 

@@ -1,7 +1,7 @@
 <resources>
     <style name="Theme.WorkoutTimer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">#FFEB3B</item>
-        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorPrimaryVariant">#202123</item>
         <item name="colorAccent">#FFEB3B</item>
         <item name="android:colorControlActivated">#FFEB3B</item>
         <item name="android:fontFamily">@font/rm</item>
