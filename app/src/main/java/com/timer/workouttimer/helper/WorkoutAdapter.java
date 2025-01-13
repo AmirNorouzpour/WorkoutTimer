@@ -73,7 +73,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                 .addItem(item)
                 .setMenuRadius(10f)
                 .setTextColor(ContextCompat.getColor(_parent.getContext(), R.color.white))
-                .setMenuColor(ContextCompat.getColor(_parent.getContext(), R.color.box))
+                .setMenuColor(ContextCompat.getColor(_parent.getContext(), R.color.inner))
                 .setMenuShadow(10f)
                 .setWidth(1000)
                 .setSelectedEffect(false)
@@ -92,7 +92,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
                 .setAutoDismiss(true)
                 .setCircularEffect(CircularEffect.BODY)
                 .setMenuColor(ContextCompat.getColor(_parent.getContext(), R.color.box))
-                .setSelectedMenuColor(ContextCompat.getColor(_parent.getContext(), R.color.box))
+                .setMenuColor(ContextCompat.getColor(_parent.getContext(), R.color.inner))
                 .setOnMenuItemClickListener(onMenuItemClickListener)
                 .build();
 
